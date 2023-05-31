@@ -26,7 +26,11 @@ const Content = styled.div`
   padding: 32px 0;
 `;
 
-export default function Layout({ children, isDimmed }) {
+export default function Layout({ children, isDimmed, lights }) {
+  const turnedOnLights = lights.filter((light) => light.isOn === true);
+  if (turnedOnLights.length === 0) {
+    isDimmed = true;
+  }
   return (
     <StyledLayout>
       <Background isDimmed={isDimmed}>
